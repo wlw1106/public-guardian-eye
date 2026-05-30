@@ -16,6 +16,8 @@ Public Guardian Eye is an embedded system designed for hospital ward visitor man
 * **Thermal Management:** Running highly demanding AI models like YOLOv8 causes the Raspberry Pi's CPU to generate significant heat. Because the SenseHat is typically close to the main PCB motherboard, its sensor readings can be affected by this self-heating effect. It is strongly suggested to use an external ribbon cable to extend the GPIO of the Pi, separating the SenseHat from the CPU heat source.
 
 ## Software Architecture
+<img src="img/3442-FSM.png" width="500">
+
 * **Finite State Machine (FSM):** The core logic transitions between INIT, MONITORING, ALERTING, and EXIT/SHUTDOWN states.
 * **Asynchronous Control Logic:** Employs non-blocking threading for the alert system to ensure concurrency and maintain real-time camera framing and inference.
 * **Hardware Interfacing:** Utilizes I/O polling for continuous environmental checks.
@@ -25,8 +27,9 @@ Public Guardian Eye is an embedded system designed for hospital ward visitor man
 * **Dynamic Thresholding:** The current iteration uses a hard-coded, non-dynamic threshold to ensure the demonstration runs smoothly without setup delays. Future updates will implement a dynamic approach featuring auto-calibration during non-visiting hours, calculating maximum visitors based on the active patient count.
 
 ## Dependencies
-* Python 3.x
+* `camera-yolo.py`
 * `opencv-python` (cv2)
 * `picamera2`
 * `ultralytics` (YOLOv8)
+* `yolov8n-head.pt`
 * `sense_hat`
